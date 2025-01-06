@@ -2,12 +2,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const cartItemsContainer = document.getElementById("cartItems");
     const subtotalElement = document.getElementById("subtotal");
     const totalElement = document.getElementById("total");
+    const loader = document.getElementById("loader");
     const API_URL =
         "https://cdn.shopify.com/s/files/1/0883/2188/4479/files/apiCartData.json?v=1728384889";
 
     let cartData = [];
     let selectedItemToRemove = null;
 
+    // Show loader
+    function showLoader() {
+        loader.classList.add("visible");
+    }
+
+    // Hide loader
+    function hideLoader() {
+        loader.classList.remove("visible");
+    }
+
+    showLoader();
     // Fetch cart data
     fetch(API_URL)
         .then((response) => response.json())
@@ -16,7 +28,10 @@ document.addEventListener("DOMContentLoaded", () => {
             renderCartItems(cartData);
             updateTotals(data.presentment_price, data.original_total_price);
         })
-        .catch((error) => console.error("Error fetching cart data:", error));
+        .catch((error) => console.error("Error fetching cart data:", error))
+        .finally(() => {
+            hideLoader();
+        });
 
     // Render cart items
     function renderCartItems(items) {
