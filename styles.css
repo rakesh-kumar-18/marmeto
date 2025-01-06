@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", serif;
+}
+
+/* Header Section */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 4rem;
+    background-color: #fff;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.logo span {
+    font-family: "Montserrat", serif;
+}
+
+.logo img {
+    width: 30px;
+    margin-right: 0.2rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 4rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #000;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.header-icons {
+    display: flex;
+    gap: 2rem;
+}
