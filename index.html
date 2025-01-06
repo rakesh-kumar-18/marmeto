@@ -51,6 +51,38 @@
             </nav>
         </div>
     </section>
+
+    <!-- Cart Section -->
+    <main class="cart-section">
+        <!-- Cart Items Table -->
+        <section class="cart-content">
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody id="cartItems"></tbody>
+            </table>
+        </section>
+
+        <!-- Cart Totals -->
+        <section class="cart-totals">
+            <p>Cart Totals</p>
+            <div class="totals-row">
+                <span>Subtotal</span>
+                <span id="subtotal">Rs. 250,000.00</span>
+            </div>
+            <div class="totals-row">
+                <span>Total</span>
+                <span id="total" class="total-amount">Rs. 250,000.00</span>
+            </div>
+            <button class="checkout-button">Check Out</button>
+        </section>
+    </main>
 </body>
 
 </html>
