@@ -105,19 +105,60 @@
 .cart-table {
     width: 100%;
     border-collapse: collapse;
+    overflow: hidden;
 }
 
 .cart-table th,
 .cart-table td {
-    padding: 1rem;
+    padding: 1rem 0rem;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+}
+
+.cart-table th {
+    background: #f9f1e7;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.cart-table td {
+    font-size: 1rem;
+    color: #666;
+    vertical-align: middle;
+    padding: 3rem 0rem;
+}
+
+.cart-item-details img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+}
+
+.quantity-input {
+    width: 50px;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.trash-icon {
+    cursor: pointer;
+    color: #b88e2f;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.trash-icon:hover {
+    color: red;
 }
 
 /* Cart Totals Styling */
 .cart-totals {
     flex: 0.6;
-    background: #F9F1E7;
+    background: #f9f1e7;
     padding: 1rem 4rem 4.5rem;
     text-align: left;
     display: flex;
@@ -144,7 +185,7 @@
 }
 
 .totals-row .total-amount {
-    color: #B88E2F;
+    color: #b88e2f;
     font-size: 1.2rem;
 }
 
@@ -164,9 +205,9 @@
 }
 
 .checkout-button:hover {
-    background: #B88E2F;
+    background: #b88e2f;
     color: #fff;
-    border-color: #B88E2F;
+    border-color: #b88e2f;
 }
 
 /* Footer Section */
@@ -195,18 +236,6 @@
 
 .service p {
     color: #898989;
-}
-
-.trash-icon {
-    cursor: pointer;
-    color: #B88E2F;
-    font-size: 20px;
-    vertical-align: middle;
-    transition: color 0.3s ease;
-}
-
-.trash-icon:hover {
-    color: red;
 }
 
 @media (max-width: 768px) {

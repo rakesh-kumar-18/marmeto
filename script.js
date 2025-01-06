@@ -25,15 +25,15 @@ document.addEventListener("DOMContentLoaded", () => {
       <tr data-id="${item.id}">
         <td>
           <div class="cart-item-details">
-            <img src="${item.image}" alt="${item.title}" style="width: 80px; height: auto; margin-right: 10px;">
-            <span>${item.title}</span>
+            <img src="${item.image}" alt="${item.title}">
           </div>
         </td>
-        <td>₹${item.presentment_price.toLocaleString("en-IN")}</td>
+        <td>${item.title}</td>
+        <td>Rs. ${item.presentment_price.toLocaleString("en-IN")}.00</td>
         <td>
           <input type="number" value="${item.quantity}" min="1" class="quantity-input" data-id="${item.id}">
         </td>
-        <td>₹${(item.presentment_price * item.quantity).toLocaleString("en-IN")}</td>
+        <td>Rs. ${(item.presentment_price * item.quantity).toLocaleString("en-IN")}.00</td>
         <td>
           <span class="material-symbols-outlined trash-icon" data-id="${item.id}">
             delete
@@ -49,8 +49,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Update totals
     function updateTotals(subtotal, total) {
-        subtotalElement.textContent = `₹${subtotal.toLocaleString("en-IN")}`;
-        totalElement.textContent = `₹${total.toLocaleString("en-IN")}`;
+        subtotalElement.textContent = `${subtotal.toLocaleString("en-IN")}.00`;
+        totalElement.textContent = `${total.toLocaleString("en-IN")}.00`;
     }
 
     // Add event listeners for quantity changes and item removal
