@@ -10,7 +10,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 4rem;
+    padding: 1.2rem 4rem;
     background-color: #fff;
 }
 
@@ -23,10 +23,11 @@
 
 .logo span {
     font-family: "Montserrat", serif;
+    font-size: 2rem;
 }
 
 .logo img {
-    width: 30px;
+    width: 40px;
     margin-right: 0.2rem;
 }
 
