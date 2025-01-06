@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "https://cdn.shopify.com/s/files/1/0883/2188/4479/files/apiCartData.json?v=1728384889";
 
     let cartData = [];
+    let selectedItemToRemove = null;
 
     // Fetch cart data
     fetch(API_URL)
@@ -49,8 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Update totals
     function updateTotals(subtotal, total) {
-        subtotalElement.textContent = `${subtotal.toLocaleString("en-IN")}.00`;
-        totalElement.textContent = `${total.toLocaleString("en-IN")}.00`;
+        subtotalElement.textContent = `Rs. ${subtotal.toLocaleString("en-IN")}.00`;
+        totalElement.textContent = `Rs. ${total.toLocaleString("en-IN")}.00`;
     }
 
     // Add event listeners for quantity changes and item removal
@@ -78,21 +79,50 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        // Remove item
+        // Remove item confirmation modal
         trashIcons.forEach((icon) => {
             icon.addEventListener("click", (event) => {
                 const itemId = parseInt(event.target.dataset.id);
-                cartData = cartData.filter((item) => item.id !== itemId);
-
-                renderCartItems(cartData);
-                const newSubtotal = cartData.reduce(
-                    (acc, item) => acc + item.presentment_price * item.quantity,
-                    0
-                );
-                updateTotals(newSubtotal, newSubtotal);
+                selectedItemToRemove = itemId;
+                showModal();
             });
         });
     }
+
+    const modal = document.getElementById("confirmModal");
+    const confirmButton = document.getElementById("confirmRemove");
+    const cancelButton = document.getElementById("cancelRemove");
+
+    function showModal() {
+        modal.style.display = "flex";
+    }
+
+    function hideModal() {
+        modal.style.display = "none";
+    }
+
+    // Confirm removal
+    confirmButton.addEventListener("click", () => {
+        if (selectedItemToRemove !== null) {
+            cartData = cartData.filter((item) => item.id !== selectedItemToRemove);
+
+            renderCartItems(cartData);
+            const newSubtotal = cartData.reduce(
+                (acc, item) => acc + item.presentment_price * item.quantity,
+                0
+            );
+            updateTotals(newSubtotal, newSubtotal);
+
+            selectedItemToRemove = null;
+        }
+        hideModal();
+    });
+
+    // Cancel removal
+    cancelButton.addEventListener("click", () => {
+        selectedItemToRemove = null;
+        hideModal();
+    });
 
     // Checkout button functionality
     const checkoutButton = document.querySelector(".checkout-button");
