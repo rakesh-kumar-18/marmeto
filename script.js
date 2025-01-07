@@ -35,9 +35,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Render cart items
     function renderCartItems(items) {
-        cartItemsContainer.innerHTML = items
-            .map(
-                (item) => `
+        if (items.length === 0) {
+            cartItemsContainer.innerHTML = `
+        <tr>
+            <td colspan="6" class="empty-cart-message">No items in the cart</td>
+        </tr>`;
+        } else {
+            cartItemsContainer.innerHTML = items
+                .map(
+                    (item) => `
       <tr data-id="${item.id}">
         <td>
           <div class="cart-item-details">
@@ -57,10 +63,11 @@ document.addEventListener("DOMContentLoaded", () => {
         </td>
       </tr>
     `
-            )
-            .join("");
+                )
+                .join("");
 
-        addEventListeners();
+            addEventListeners();
+        }
     }
 
     // Update totals

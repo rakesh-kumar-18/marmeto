@@ -109,18 +109,13 @@
     overflow: hidden;
 }
 
-.cart-table th,
-.cart-table td {
-    padding: 1rem 0rem;
-    text-align: left;
-}
-
 .cart-table th {
     background: #f9f1e7;
     font-size: 1rem;
     font-weight: 600;
     color: #333;
     text-transform: uppercase;
+    padding: 1rem 0rem;
 }
 
 .cart-table td {
@@ -128,6 +123,7 @@
     color: #666;
     vertical-align: middle;
     padding: 3rem 0rem;
+    text-align: center;
 }
 
 .cart-item-details img {
@@ -154,6 +150,14 @@
 
 .trash-icon:hover {
     color: red;
+}
+
+.empty-cart-message {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #666;
+    padding: 2rem 0;
 }
 
 /* Cart Totals Styling */
