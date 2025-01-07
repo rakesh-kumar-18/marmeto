@@ -20,13 +20,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     showLoader();
-    // Fetch cart data
+
+    // Fetch cart data from API
     fetch(API_URL)
         .then((response) => response.json())
         .then((data) => {
-            cartData = data.items;
+            cartData = loadCartDataFromLocalStorage() || data.items;
             renderCartItems(cartData);
-            updateTotals(data.presentment_price, data.original_total_price);
+            const newSubtotal = cartData.reduce(
+                (acc, item) => acc + item.presentment_price * item.quantity,
+                0
+            );
+            updateTotals(newSubtotal, newSubtotal);
         })
         .catch((error) => console.error("Error fetching cart data:", error))
         .finally(() => {
@@ -91,7 +96,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (item && newQuantity > 0) {
                     item.quantity = newQuantity;
 
+                    saveCartDataToLocalStorage();
                     renderCartItems(cartData);
+
                     const newSubtotal = cartData.reduce(
                         (acc, item) => acc + item.presentment_price * item.quantity,
                         0
@@ -127,6 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cartData = [];
         renderCartItems(cartData);
         updateTotals(0, 0);
+        saveCartDataToLocalStorage();
     };
 
     // Confirm removal
@@ -134,6 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (selectedItemToRemove !== null) {
             cartData = cartData.filter((item) => item.id !== selectedItemToRemove);
 
+            saveCartDataToLocalStorage();
             renderCartItems(cartData);
             const newSubtotal = cartData.reduce(
                 (acc, item) => acc + item.presentment_price * item.quantity,
@@ -162,4 +171,15 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Cart is empty");
         }
     });
+
+    // Save cart data to localStorage
+    function saveCartDataToLocalStorage() {
+        localStorage.setItem("cartData", JSON.stringify(cartData));
+    }
+
+    // Load cart data from localStorage
+    function loadCartDataFromLocalStorage() {
+        const storedCartData = localStorage.getItem("cartData");
+        return storedCartData ? JSON.parse(storedCartData) : null;
+    }
 });
