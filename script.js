@@ -116,6 +116,12 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.style.display = "none";
     }
 
+    const checkoutItems = () => {
+        cartData = [];
+        renderCartItems(cartData);
+        updateTotals(0, 0);
+    };
+
     // Confirm removal
     confirmButton.addEventListener("click", () => {
         if (selectedItemToRemove !== null) {
@@ -142,6 +148,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Checkout button functionality
     const checkoutButton = document.querySelector(".checkout-button");
     checkoutButton.addEventListener("click", () => {
-        alert("Proceeding to checkout...");
+        if (cartData.length > 0) {
+            alert("Proceeding to checkout...");
+            checkoutItems();
+        } else {
+            alert("Cart is empty");
+        }
     });
 });
